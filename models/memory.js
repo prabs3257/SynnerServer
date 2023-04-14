@@ -1,49 +1,41 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
-
+import mongoose from "mongoose";
+import validator from "validator";
 
 const memorySchema = new mongoose.Schema({
-    desc: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    
-    imgLink:{
-        type:String,
-        required:false  
-    },
+  desc: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    lat: {
-        type: String,
-        required: true,
-        trim: true
-    },
+  imgLink: {
+    type: String,
+    required: false,
+  },
 
-    lng: {
-        type: String,
-        required: true,
-        trim: true
-    },
+  lat: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    creatorName: {
-        type: String,
-        required: true,
-        trim: true
-    },
+  lng: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    creatorImg: {
-        type: String,
-        required: true,
-        trim: true
-    },
-  
-    
-    
-})
+  creatorName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
+  creatorImg: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+});
 
-
-const Memory = mongoose.model('Memory', memorySchema)
-
-module.exports = Memory
+export default mongoose.model("Memory", memorySchema);
