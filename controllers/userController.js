@@ -69,3 +69,14 @@ export const createUser = async (req, res, next) => {
 
   return res.status(201).json({ user });
 };
+
+export const getUser = async (req, res, next) => {
+  const { googleId } = req.params;
+  let exisitingUser;
+  try {
+    exisitingUser = await User.findOne({ googleId });
+  } catch (err) {
+    return console.log(err);
+  }
+  return res.status(201).json({ exisitingUser });
+};
