@@ -1,9 +1,9 @@
 import express from "express";
-import { addUser, addProfile } from "../controllers/userController.js";
+import { createUser, addProfile } from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.post("/", addUser);
+router.post("/", createUser);
 router.post("/profile", addProfile);
 // router.post("/signup", signup);
 // router.post("/login", login);

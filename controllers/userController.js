@@ -17,7 +17,7 @@ export const addUser = async (req, res, next) => {
   }
 };
 
-export const addProfile = async (req, res, next) => {
+export const createUser = async (req, res, next) => {
   const {
     idLink,
     resumeLink,
@@ -25,6 +25,9 @@ export const addProfile = async (req, res, next) => {
     societyExp,
     additionalLinks,
     email,
+    googleId,
+    name,
+    profilePicLink,
   } = req.body;
 
   let exisitingUser;
@@ -34,34 +37,27 @@ export const addProfile = async (req, res, next) => {
     return console.log(err);
   }
 
-  if (!exisitingUser) {
-    return res.status(422).json({ message: "User does not exists" });
+  if (exisitingUser) {
+    return res.status(422).json({ message: "User already exists" });
   }
 
-  console.log(exisitingUser);
-
-  const result = await tesseract.recognize(
-    "https://firebasestorage.googleapis.com/v0/b/look-up-f467b.appspot.com/o/Screenshot%202023-04-14%20at%204.59.50%20PM.png?alt=media&token=bddb1f08-8b0d-43bf-ba40-80cfdc4f6aba",
-    "eng"
-  );
+  const result = await tesseract.recognize(idLink, "eng");
   const userInfo = result.data.text.split("\n");
   const rollNo = userInfo[5];
   const branch = userInfo[6];
 
-  console.log(email);
-
-  const user = await User.findOneAndUpdate(
-    { email: exisitingUser.email },
-    {
-      idLink,
-      resumeLink,
-      competingExp,
-      societyExp,
-      additionalLinks,
-      branch,
-      rollNo,
-    }
-  );
+  const user = new User({
+    idLink,
+    resumeLink,
+    competingExp,
+    societyExp,
+    additionalLinks,
+    googleId,
+    name,
+    profilePicLink,
+    branch,
+    rollNo,
+  });
 
   try {
     await user.save();
