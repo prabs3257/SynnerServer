@@ -25,6 +25,27 @@ const userSchema = new mongoose.Schema({
       }
     },
   },
+  idLink: {
+    type: String,
+  },
+  resumeLink: {
+    type: String,
+  },
+  competingExp: {
+    type: String,
+  },
+  societyExp: {
+    type: String,
+  },
+  additionalLinks: {
+    type: String,
+  },
+  branch: {
+    type: String,
+  },
+  rollNo: {
+    type: String,
+  },
 });
 
 export default mongoose.model("User", userSchema);

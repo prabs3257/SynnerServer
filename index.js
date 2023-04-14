@@ -21,23 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoutes);
 
-app.get("/test", async (req, res) => {
-  console.log("dfdsfsf");
-  tesseract
-    .recognize(
-      "https://firebasestorage.googleapis.com/v0/b/look-up-f467b.appspot.com/o/Screenshot%202023-04-14%20at%204.39.39%20PM.png?alt=media&token=e70e50a8-5283-4d8a-8e95-de4c03554305",
-      "eng"
-    )
-    .then((result) => {
-      console.log(result.data.text);
-      const textData = result.data.text;
-      console.log(textData.indexOf("HTML"));
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-});
-
 app.post("/addMemory", async (req, res) => {
   console.log(req.body);
   const memory = new Memory(req.body);
@@ -60,6 +43,6 @@ app.get("/getMemories", async (req, res) => {
   }
 });
 
-app.listen(3000, function () {
-  console.log("listening on 3000");
+app.listen(3333, function () {
+  console.log("listening on 3333");
 });
