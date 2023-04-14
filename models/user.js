@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import validator from "validator";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -19,7 +18,6 @@ const userSchema = new mongoose.Schema({
     trim: true,
     unique: true,
     lowercase: true,
-    
   },
   idLink: {
     type: String,
@@ -44,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   googleId: {
     type: String,
-  }
+  },
 });
 
 export default mongoose.model("User", userSchema);
