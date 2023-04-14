@@ -43,6 +43,6 @@ app.get("/getMemories", async (req, res) => {
   }
 });
 
-app.listen(3333, function () {
-  console.log("listening on 3333");
+app.listen(3000, function () {
+  console.log("listening on 3000");
 });

@@ -19,11 +19,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
     unique: true,
     lowercase: true,
-    validate(value) {
-      if (!validator.isEmail(value)) {
-        throw new Error("Email is Invalid");
-      }
-    },
+    
   },
   idLink: {
     type: String,
@@ -46,6 +42,9 @@ const userSchema = new mongoose.Schema({
   rollNo: {
     type: String,
   },
+  googleId: {
+    type: String,
+  }
 });
 
 export default mongoose.model("User", userSchema);
