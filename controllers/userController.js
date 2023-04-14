@@ -30,7 +30,7 @@ export const createUser = async (req, res, next) => {
     profilePicLink,
   } = req.body;
 
-    console.log(req.body)
+  console.log(req.body);
   let exisitingUser;
   try {
     exisitingUser = await User.findOne({ email });
@@ -58,6 +58,7 @@ export const createUser = async (req, res, next) => {
     profilePicLink,
     branch,
     rollNo,
+    email,
   });
 
   try {
