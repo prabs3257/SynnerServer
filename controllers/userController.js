@@ -71,7 +71,7 @@ export const createUser = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
-  const { googleId } = req.params;
+  const { googleId } = req.query;
   let exisitingUser;
   try {
     exisitingUser = await User.findOne({ googleId });
