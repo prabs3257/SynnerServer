@@ -17,7 +17,7 @@ export const addUser = async (req, res, next) => {
   }
 };
 
-export const createUser = async (req, res, next) => {
+export const addProfile = async (req, res, next) => {
   const {
     idLink,
     resumeLink,
@@ -38,8 +38,8 @@ export const createUser = async (req, res, next) => {
     return console.log(err);
   }
 
-  if (exisitingUser) {
-    return res.status(422).json({ message: "User already exists" });
+  if (!exisitingUser) {
+    return res.status(422).json({ message: "User does not exists" });
   }
 
   const result = await tesseract.recognize(idLink, "eng");
@@ -47,19 +47,21 @@ export const createUser = async (req, res, next) => {
   const rollNo = userInfo[5];
   const branch = userInfo[6];
 
-  const user = new User({
-    idLink,
-    resumeLink,
-    competingExp,
-    societyExp,
-    additionalLinks,
-    googleId,
-    name,
-    profilePicLink,
-    branch,
-    rollNo,
-    email,
-  });
+  const user = await User.findOneAndUpdate(
+    { email },
+    {
+      idLink,
+      resumeLink,
+      competingExp,
+      societyExp,
+      additionalLinks,
+      googleId,
+      name,
+      profilePicLink,
+      branch,
+      rollNo,
+    }
+  );
 
   try {
     await user.save();
@@ -78,5 +80,5 @@ export const getUser = async (req, res, next) => {
   } catch (err) {
     return console.log(err);
   }
-  return res.status(201).json({ exisitingUser });
+  return res.status(201).json(exisitingUser);
 };

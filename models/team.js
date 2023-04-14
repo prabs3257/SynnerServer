@@ -33,7 +33,6 @@ const teamSchema = new mongoose.Schema({
   },
   objective: {
     type: String,
-    required: true,
   },
   googleId: {
     type: String,
