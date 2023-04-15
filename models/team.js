@@ -42,7 +42,11 @@ const teamSchema = new mongoose.Schema({
     type: String,
   },
   requests: {
-    type: [{ type: String }],
+    type: [
+      {
+        type: String,
+      },
+    ],
   },
 });
 
