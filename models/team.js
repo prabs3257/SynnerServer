@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const teamSchema = new mongoose.Schema({
+  team: {
+    type: String,
+    required: true,
+  },
   competitionName: {
     type: String,
     required: true,
