@@ -1,4 +1,5 @@
 import Competition from "../models/competition.js";
+import Team from "../models/team.js";
 
 export const getAllCompetitions = async (req, res, next) => {
   let competitions;
@@ -25,5 +26,20 @@ export const getTeamsFromCompetition = async (req, res, next) => {
     return res.status(422).json({ message: "No competition found" });
   }
   const { teams } = competition;
-  return res.status(200).json(teams);
+  let teamsArray = [];
+  for (let i = 0; i < teams.length; i++) {
+    let team;
+    try {
+      team = await Team.findById(teams[i]);
+    } catch (err) {
+      return console.log(err);
+    }
+
+    if (!team) {
+      return res.status(422).json({ message: "No team found" });
+    } else {
+      teamsArray.push(team);
+    }
+  }
+  return res.status(200).json(teamsArray);
 };
