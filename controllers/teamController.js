@@ -47,7 +47,6 @@ export const addRequests = async (req, res, next) => {
   if (!team) {
     return res.status(422).json({ message: "No team found" });
   }
-  console.log(team["requests"]);
   team.requests.push(name);
   try {
     await team.save();
@@ -55,4 +54,18 @@ export const addRequests = async (req, res, next) => {
     return console.log(err);
   }
   return res.status(200).json({ message: "Request added" });
+};
+
+export const getAllTeams = async (req, res, next) => {
+  const { googleId } = req.query;
+  let teams;
+  try {
+    teams = await Team.find({ googleId });
+  } catch (err) {
+    return console.log(err);
+  }
+  if (!teams) {
+    return res.status(422).json({ message: "No teams found" });
+  }
+  return res.status(200).json(teams);
 };
