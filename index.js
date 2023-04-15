@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import Memory from "./models/memory.js";
 import userRoutes from "./routes/userRoutes.js";
 import competitionRoutes from "./routes/competitionRoutes.js";
+import teamRoutes from "./routes/teamRoutes.js";
 const app = express();
 import tesseract from "tesseract.js";
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoutes);
 app.use("/competitions", competitionRoutes);
+app.use("/team", teamRoutes);
 
 app.post("/addMemory", async (req, res) => {
   console.log(req.body);

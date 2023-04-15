@@ -41,6 +41,9 @@ const teamSchema = new mongoose.Schema({
   googleId: {
     type: String,
   },
+  requests: {
+    type: [{ type: String }],
+  },
 });
 
 export default mongoose.model("Team", teamSchema);
