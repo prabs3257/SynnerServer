@@ -14,10 +14,10 @@ export const getAllCompetitions = async (req, res, next) => {
 };
 
 export const getTeamsFromCompetition = async (req, res, next) => {
-  const { id } = req.query;
+  const { _id } = req.query;
   let competition;
   try {
-    competition = await Competition.findById(id);
+    competition = await Competition.findById(_id);
   } catch (err) {
     return console.log(err);
   }
