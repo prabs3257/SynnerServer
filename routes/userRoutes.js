@@ -4,7 +4,7 @@ import { addTeam } from "../controllers/teamController.js";
 
 const router = express.Router();
 
-router.get("/", addUser);
+router.post("/", addUser);
 router.post("/profile", addProfile);
 router.get("/getUserById", getUser);
 router.post("/createTeam", addTeam);

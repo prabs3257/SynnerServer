@@ -8,6 +8,7 @@ export const addUser = async (req, res, next) => {
   try {
     const temp = await User.findOne({ email: req.body.email });
     if (!temp) {
+      console.log("dsfsfsfs")
       await user.save();
     }
     //const token = await user.generateAuthToken()
@@ -73,6 +74,7 @@ export const addProfile = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
+  console.log("hjhjhjhj")
   const { googleId } = req.query;
   let exisitingUser;
   try {
@@ -80,5 +82,6 @@ export const getUser = async (req, res, next) => {
   } catch (err) {
     return console.log(err);
   }
+  console.log(exisitingUser)
   return res.status(201).json(exisitingUser);
 };
