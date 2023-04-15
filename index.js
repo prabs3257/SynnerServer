@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import User from "./models/user.js";
 import Memory from "./models/memory.js";
 import userRoutes from "./routes/userRoutes.js";
+import competitionRoutes from "./routes/competitionRoutes.js";
 const app = express();
 import tesseract from "tesseract.js";
 
@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", userRoutes);
+app.use("/competitions", competitionRoutes);
 
 app.post("/addMemory", async (req, res) => {
   console.log(req.body);
